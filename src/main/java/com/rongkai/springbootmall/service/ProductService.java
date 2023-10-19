@@ -1,6 +1,7 @@
 package com.rongkai.springbootmall.service;
 
 import com.rongkai.springbootmall.model.Product;
+import org.springframework.stereotype.Service;
 
 public interface ProductService {
 

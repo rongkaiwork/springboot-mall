@@ -3,17 +3,19 @@ package com.rongkai.springbootmall.service.impl;
 import com.rongkai.springbootmall.dao.ProductDao;
 import com.rongkai.springbootmall.model.Product;
 import com.rongkai.springbootmall.service.ProductService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
+@RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
-    private ProductDao productDao;
+   private final ProductDao productDao;
 
     @Override
     public Product getProductById(Integer productID) {
-        return productDao.getProductById(productID);
+        return productDao.findById(productID).orElse(new Product());
     }
 }

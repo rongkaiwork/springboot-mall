@@ -1,90 +1,46 @@
 package com.rongkai.springbootmall.model;
 
 import com.rongkai.springbootmall.constant.ProductCategory;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "product", schema = "mall")
 public class Product {
 
-  private Integer productId;
-  private String productName;
-  private ProductCategory category;
-  private String imageUrl;
-  private Integer price;
-  private Integer stock;
-  private String description;
-  private Date createdDate;
-  private Date lastModifiedDate;
+    @Id
+    @Column(name = "product_id")
+    private Integer productId;
 
-    public Integer getProductId() {
-        return productId;
-    }
+    @Column(name = "product_name")
+    private String productName;
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category")
+    private ProductCategory category;
 
-    public String getProductName() {
-        return productName;
-    }
+    @Column(name = "image_url")
+    private String imageUrl;
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
+    @Column(name = "price")
+    private Integer price;
 
-    public ProductCategory getCategory() {
-        return category;
-    }
+    @Column(name = "stock")
+    private Integer stock;
 
-    public void setCategory(ProductCategory category) {
-        this.category = category;
-    }
+    @Column(name = "description")
+    private String description;
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
+    @Column(name = "created_date")
+    private Date createdDate;
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
+    @Column(name = "last_modified_date")
+    private Date lastModifiedDate;
 }
