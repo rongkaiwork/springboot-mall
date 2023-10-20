@@ -1,17 +1,16 @@
 package com.rongkai.springbootmall.controller;
 
+import com.rongkai.springbootmall.dto.ProductRequest;
 import com.rongkai.springbootmall.model.Product;
 import com.rongkai.springbootmall.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Slf4j
 @RestController
@@ -33,9 +32,11 @@ public class ProductController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
-    @RequestMapping("/sayhello")
-    public String hello(){
-        System.out.println("");
-        return "jjj";
+
+    @PostMapping("")
+    public ResponseEntity<Product> createProduct(@RequestBody @Valid ProductRequest productRequest){
+        Integer productId = productService.createProduct(productRequest);
+        Product product = productService.getProductById(productId);
+        return ResponseEntity.status(HttpStatus.OK).body(product);
     }
 }
